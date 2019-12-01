@@ -1,0 +1,26 @@
+kind: pipeline
+name: default
+
+steps:
+  - name: build
+    image: golang:alpine
+    environment:
+      CGO_ENABLED: 0
+    commands:
+      - apk add --no-cache git
+      - go get -u github.com/rakyll/statik
+      - go generate
+      - go build -o members
+      - tar zcf members.tar.gz members
+
+  - name: release
+    image: plugins/github-release
+    settings:
+      api_key:
+        from_secret: github_token
+      files:
+        - members.tar.gz
+      checksum:
+        - sha256
+    when:
+      event: tag

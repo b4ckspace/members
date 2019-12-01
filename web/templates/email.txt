@@ -1,0 +1,8 @@
+Subject: Hackerspace Bamberg - Members
+
+Hallo {{ .Nickname }},
+
+hier ist der Link zum setzen deines Passworts:
+https://members.hackerspace-bamberg.de/password?t={{ .Token }}
+
+Bis bald!

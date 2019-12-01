@@ -1,0 +1,27 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="stylesheet" href="/static/css/bootstrap.min.css">
+    <title>Member Portal</title>
+  </head>
+  <body>
+    <div class="container py-3">
+      <h1><a href="/"><img src="/static/img/backspace.png" alt="Backspace e.V."></a></h1>
+      {{ if .Messages }}<hr>{{ end }}
+      {{ range .Messages }}
+      <div class="alert alert-{{.Kind}} alert-dismissable fade show">
+	{{ .Message }}
+        {{- if eq .Kind "danger" }}
+	<br>
+	Bitte wende dich an das Admin-Team
+	{{- end }}
+      </div>
+      {{ end }}
+      <hr class="my-3">
+      {{ block "content" . }}no content{{ end }}
+      <script src="/static/js/bootstrap.min.js"></script>
+    </div>
+  </body>
+</html>
