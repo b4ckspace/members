@@ -61,7 +61,9 @@ func TestWeb(t *testing.T) {
 		"Registrierungs-Mail konnte nicht gesendet werden",
 	}}
 	for _, o := range registerMemberOpts {
+		t.Logf("running %s", o.testName)
 		mockLdapDailer.EXPECT().Dial(context.Background()).Return(mockLdapWrap, nil)
+		mockLdapWrap.EXPECT().MemberExists(o.nickname).Return(false, nil)
 		mockLdapWrap.EXPECT().
 			RegisterMember(o.nickname, o.email, o.mlMail).
 			Return(o.token, o.err)
