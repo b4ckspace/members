@@ -26,11 +26,11 @@ func GenerateToken(nickname string) (tokenString string, err error) {
 	if err != nil {
 		return "", fmt.Errorf("unable to gob encode token: %s", err)
 	}
-	return base64.URLEncoding.EncodeToString(w.Bytes()), nil
+	return base64.RawURLEncoding.EncodeToString(w.Bytes()), nil
 }
 
 func ValidateToken(tokenString string, nickname string) (ok bool, err error) {
-	tokenBytes, err := base64.URLEncoding.DecodeString(tokenString)
+	tokenBytes, err := base64.RawURLEncoding.DecodeString(tokenString)
 	if err != nil {
 		return false, fmt.Errorf("unable to decode base64: %s\n%s", err, tokenString)
 	}
