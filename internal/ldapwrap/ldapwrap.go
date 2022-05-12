@@ -93,13 +93,15 @@ func (l *LdapWrap) PasswordReset(nickname string) (token, email string, err erro
 		return "", "", fmt.Errorf("unable to find user with nickname: %s", nickname)
 	}
 
-	token, err = GenerateToken(nickname)
+	member := sr.Entries[0]
+	ldapNickname := member.GetAttributeValue("uid")
+	email = member.GetAttributeValue("alternateEmail")
+
+	token, err = GenerateToken(ldapNickname)
 	if err != nil {
 		return "", "", fmt.Errorf("unable to generate token: %s", err)
 	}
 
-	member := sr.Entries[0]
-	email = member.GetAttributeValue("alternateEmail")
 	req := ldap.NewModifyRequest(member.DN, []ldap.Control{})
 	req.Replace("token", []string{token})
 
