@@ -1,10 +1,16 @@
 module github.com/b4ckspace/members
 
-go 1.13
+go 1.22.4
 
 require (
-	github.com/golang/mock v1.3.1
-	github.com/rakyll/statik v0.1.6
-	gopkg.in/asn1-ber.v1 v1.0.0-20181015200546-f715ec2f112d // indirect
-	gopkg.in/ldap.v3 v3.0.3
+	github.com/go-ldap/ldap/v3 v3.4.8
+	github.com/golang/mock v1.6.0
+	github.com/rakyll/statik v0.1.7
+)
+
+require (
+	github.com/Azure/go-ntlmssp v0.0.0-20221128193559-754e69321358 // indirect
+	github.com/go-asn1-ber/asn1-ber v1.5.5 // indirect
+	github.com/google/uuid v1.6.0 // indirect
+	golang.org/x/crypto v0.21.0 // indirect
 )
