@@ -8,7 +8,7 @@ import (
 	"sync"
 	"time"
 
-	"gopkg.in/ldap.v3"
+	"github.com/go-ldap/ldap/v3"
 
 	"github.com/b4ckspace/members/internal/core"
 	"github.com/b4ckspace/members/internal/ssha"

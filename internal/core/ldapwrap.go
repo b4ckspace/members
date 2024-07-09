@@ -4,7 +4,7 @@ package core
 import (
 	"context"
 
-	"gopkg.in/ldap.v3"
+	"github.com/go-ldap/ldap/v3"
 )
 
 type (
@@ -12,7 +12,7 @@ type (
 		Add(*ldap.AddRequest) error
 		Modify(*ldap.ModifyRequest) error
 		Search(*ldap.SearchRequest) (*ldap.SearchResult, error)
-		Close()
+		Close() error
 	}
 	LdapDialer interface {
 		Dial(context.Context) (LdapWrap, error)

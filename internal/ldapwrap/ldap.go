@@ -4,7 +4,7 @@ import (
 	"crypto/tls"
 	"fmt"
 
-	"gopkg.in/ldap.v3"
+	"github.com/go-ldap/ldap/v3"
 
 	"github.com/b4ckspace/members/internal/core"
 )
@@ -17,7 +17,7 @@ func NewLdapConnFactory(
 	ldapConnFactory LdapConnFactory,
 ) {
 	return func() (conn core.LdapConn, err error) {
-		c, err := ldap.Dial("tcp", fmt.Sprintf("%s:%d", host, port))
+		c, err := ldap.DialURL(fmt.Sprintf("ldaps://%s:%d", host, port))
 		if err != nil {
 			return nil, fmt.Errorf("unable to connect to ldap: %s", err)
 		}
