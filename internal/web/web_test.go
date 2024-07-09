@@ -5,7 +5,6 @@ import (
 	"context"
 	"fmt"
 	"io"
-	"io/ioutil"
 	"net/http"
 	"net/http/httptest"
 	"os"
@@ -134,7 +133,7 @@ func postOk(web *Web, url string, r io.Reader, want string) (ok bool, err error)
 	req.Header.Add("Content-Type", "application/x-www-form-urlencoded")
 	rr := httptest.NewRecorder()
 	web.GetMux().ServeHTTP(rr, req)
-	body, _ := ioutil.ReadAll(rr.Result().Body)
+	body, _ := io.ReadAll(rr.Result().Body)
 	ok = bytes.Contains(body, []byte(want))
 	if !ok {
 		return ok, fmt.Errorf(string(body))

@@ -3,9 +3,9 @@ package mailer
 import (
 	"crypto/tls"
 	"fmt"
+	"io"
 	"net/smtp"
 	"text/template"
-	"io/ioutil"
 
 	"github.com/b4ckspace/members/internal/core"
 	"github.com/b4ckspace/members/internal/statics"
@@ -64,7 +64,7 @@ func (m *Mailer) SendPassword(to, nickname, token string) (err error) {
 	if err != nil {
 		return fmt.Errorf("unable to open mail template: %s", err)
 	}
-	templateBody, err := ioutil.ReadAll(fp)
+	templateBody, err := io.ReadAll(fp)
 	if err != nil {
 		return fmt.Errorf("unable to load mail template: %s", err)
 	}

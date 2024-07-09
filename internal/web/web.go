@@ -3,7 +3,7 @@ package web
 import (
 	"fmt"
 	"html/template"
-	"io/ioutil"
+	"io"
 	"log"
 	"net/http"
 	"path/filepath"
@@ -125,7 +125,7 @@ func (web *Web) templateParseFilesFromFs(files ...string) (t *template.Template,
 		if err != nil {
 			return nil, err
 		}
-		c, err := ioutil.ReadAll(fp)
+		c, err := io.ReadAll(fp)
 		if err != nil {
 			return nil, err
 		}
