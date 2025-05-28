@@ -60,7 +60,7 @@ func (m *Mailer) SendPassword(to, nickname, token string) (err error) {
 	}
 	defer body.Close()
 
-	fp , err:= statics.MustStatics().Open("/templates/email.txt")
+	fp, err := statics.Statics().Open("/templates/email.txt")
 	if err != nil {
 		return fmt.Errorf("unable to open mail template: %s", err)
 	}

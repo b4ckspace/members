@@ -10,7 +10,6 @@ import (
 
 	"github.com/b4ckspace/members/internal/core"
 	"github.com/b4ckspace/members/internal/statics"
-	_ "github.com/b4ckspace/members/statik"
 )
 
 const (
@@ -54,7 +53,7 @@ func New(mailer core.Mailer, ld core.LdapDialer) (web *Web, err error) {
 		mux:        web.registerMiddlewares(mux, logMiddleware),
 		ldapDialer: ld,
 		templates:  map[string]*template.Template{},
-		statics:    statics.MustStatics(),
+		statics:    statics.Statics(),
 	}
 	templates := []string{"index.html", "register.html", "reset.html", "password.html"}
 	for _, tplFile := range templates {

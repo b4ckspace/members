@@ -5,7 +5,6 @@ go 1.22.4
 require (
 	github.com/go-ldap/ldap/v3 v3.4.8
 	github.com/golang/mock v1.6.0
-	github.com/rakyll/statik v0.1.7
 )
 
 require (
